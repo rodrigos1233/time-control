@@ -6,6 +6,16 @@ import {lengthText} from "@/app/utils/lengthText";
 export default function TimeControl() {
     const [selectedLengthOption, setSelectedLengthOption] = useState(0)
     const [selectedSubdivisionsOption, setSelectedSubdivisionsOption] = useState(0)
+    const [isInProgress, setIsInProgress] = useState(false)
+    const [currentSubdivision, setCurrentSubdivision] = useState(0);
+
+    const colorsOptions = [
+        "003844",
+        "006C67",
+        "F194B4",
+        "FFB100",
+        "FFEBC6"
+    ]
 
     const lengthOptions = [
         {
@@ -21,6 +31,21 @@ export default function TimeControl() {
             value: 60
         }
     ]
+
+    function handleStart() {
+        setIsInProgress(true)
+        let current = 0;
+
+        const interval = setInterval(() => {
+            setCurrentSubdivision(current);
+            current += 1;
+
+            if (current >= subdivisionOptions[selectedSubdivisionsOption].value) {
+                clearInterval(interval);
+                setIsInProgress(false);
+            }
+        }, lengthOptions[selectedLengthOption].value * 1000 * 60 / subdivisionOptions[selectedSubdivisionsOption].value);
+    }
 
     const subdivisionOptions = [
         {
@@ -50,9 +75,20 @@ export default function TimeControl() {
     ]
 
     return (
-        <div className="flex flex-col gap-4">
-            <Selector options={lengthOptions} selectedIndex={selectedLengthOption} setSelectedIndex={setSelectedLengthOption}/>
-            <Selector options={subdivisionOptions} selectedIndex={selectedSubdivisionsOption} setSelectedIndex={setSelectedSubdivisionsOption}/>
+        <div className="flex flex-col gap-4 w-full">
+            {!isInProgress && (
+                <>
+                    <Selector options={lengthOptions} selectedIndex={selectedLengthOption} setSelectedIndex={setSelectedLengthOption}/>
+                    <Selector options={subdivisionOptions} selectedIndex={selectedSubdivisionsOption} setSelectedIndex={setSelectedSubdivisionsOption}/>
+                    <button onClick={handleStart} className="bg-lime-600 rounded-lg px-6 py-4 text-sm sm:text-base text-center flex-grow cursor-pointer">Start</button>
+                </>
+            )}
+            {isInProgress && (
+                <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-4 transition-colors" style={{ backgroundColor: `#${colorsOptions[currentSubdivision]}` }}>
+
+                </div>
+                )
+            }
         </div>
     );
 }
