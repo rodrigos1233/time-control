@@ -39,7 +39,7 @@ export default function Selector({selectedIndex, setSelectedIndex, options}: sel
 
 
     return (
-        <div className="flex bg-black/[.05] rounded-xl p-1 relative">
+        <div className="flex bg-black/[.05] rounded-xl p-1 relative border-4 border-black/[.10] gap-1">
             <div className="z-10 absolute bg-amber-500 rounded-lg transition-all" style={{ left: `${optionStyles.left}px`, width: `${optionStyles.width}px`, height: 'calc(100% - 0.5rem)' }}></div>
             {options.map((option, index) => (
                 <div
