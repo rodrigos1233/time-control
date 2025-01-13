@@ -1,4 +1,3 @@
-import Image from "next/image";
 import TimeControl from "@/app/components/time-control/timeControl";
 
 export default function Home() {
