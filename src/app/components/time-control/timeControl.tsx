@@ -2,12 +2,14 @@
 import {useState} from "react";
 import Selector from "@/app/components/selector/selector";
 import {lengthText} from "@/app/utils/lengthText";
+import Clock from "@/app/components/clock/clock";
 
 export default function TimeControl() {
     const [selectedLengthOption, setSelectedLengthOption] = useState(0)
     const [selectedSubdivisionsOption, setSelectedSubdivisionsOption] = useState(0)
     const [isInProgress, setIsInProgress] = useState(false)
     const [currentSubdivision, setCurrentSubdivision] = useState(0);
+    const [currentTime, setCurrentTime] = useState(new Date());
 
     const colorsOptions = [
         "003844",
@@ -20,7 +22,7 @@ export default function TimeControl() {
     const lengthOptions = [
         {
             label: "45 Minutes",
-            value: 45
+            value: 2
         },
         {
             label: "30 Minutes",
@@ -35,6 +37,7 @@ export default function TimeControl() {
     function handleStart() {
         setIsInProgress(true)
         let current = 0;
+        setCurrentTime(new Date());
 
         const interval = setInterval(() => {
             setCurrentSubdivision(current);
@@ -85,7 +88,11 @@ export default function TimeControl() {
             )}
             {isInProgress && (
                 <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-4 transition-colors" style={{ backgroundColor: `#${colorsOptions[currentSubdivision]}` }}>
-
+                    <Clock
+                        fullRoundDuration={lengthOptions[selectedSubdivisionsOption].value * 1000 * 60}
+                        subdivisions={subdivisionOptions[selectedSubdivisionsOption].value}
+                        startTime={currentTime}
+                    />
                 </div>
                 )
             }
