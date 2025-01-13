@@ -24,7 +24,6 @@ export default function Clock({fullRoundDuration, subdivisions, startTime}: sele
 
     const progress = (timePassed / fullRoundDuration) * 100;
 
-    console.log({progress, fullRoundDuration, subdivisions, timePassed});
     return (
         <div className="flex justify-center items-center rounded-full relative border-4 border-black w-96 aspect-square max-w-[90vw]">
             <div
