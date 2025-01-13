@@ -89,7 +89,7 @@ export default function TimeControl() {
             {isInProgress && (
                 <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-4 transition-colors" style={{ backgroundColor: `#${colorsOptions[currentSubdivision]}` }}>
                     <Clock
-                        fullRoundDuration={lengthOptions[selectedSubdivisionsOption].value * 1000 * 60}
+                        fullRoundDuration={lengthOptions[selectedLengthOption].value * 1000 * 60}
                         subdivisions={subdivisionOptions[selectedSubdivisionsOption].value}
                         startTime={currentTime}
                     />
