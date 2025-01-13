@@ -22,7 +22,7 @@ export default function TimeControl() {
     const lengthOptions = [
         {
             label: "45 Minutes",
-            value: 2
+            value: 45
         },
         {
             label: "30 Minutes",
