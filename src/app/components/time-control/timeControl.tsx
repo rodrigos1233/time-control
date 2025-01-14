@@ -1,5 +1,5 @@
 "use client";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Selector from "@/app/components/selector/selector";
 import {lengthText} from "@/app/utils/lengthText";
 import Clock from "@/app/components/clock/clock";
@@ -10,6 +10,35 @@ export default function TimeControl() {
     const [isInProgress, setIsInProgress] = useState(false)
     const [currentSubdivision, setCurrentSubdivision] = useState(0);
     const [currentTime, setCurrentTime] = useState(new Date());
+
+    useEffect(() => {
+        let wakeLock: WakeLockSentinel | null = null;
+
+        const requestWakeLock = async () => {
+            try {
+                if ("wakeLock" in navigator) {
+                    wakeLock = await navigator.wakeLock.request("screen");
+                    console.log("Wake Lock is active");
+                } else {
+                    console.warn("Wake Lock API is not supported on this browser.");
+                }
+            } catch (err) {
+                console.error("Wake Lock request failed:", err);
+            }
+        };
+
+        if (isInProgress) {
+            requestWakeLock();
+        }
+
+        return () => {
+            if (wakeLock) {
+                wakeLock.release().then(() => {
+                    console.log("Wake Lock has been released");
+                });
+            }
+        };
+    }, [isInProgress]);
 
     const colorsOptions = [
         "003844",
