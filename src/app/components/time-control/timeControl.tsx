@@ -16,7 +16,7 @@ export default function TimeControl() {
         "006C67",
         "F194B4",
         "FFB100",
-        "FFEBC6"
+        "FFEBC6",
     ]
 
     const lengthOptions = [
@@ -35,13 +35,16 @@ export default function TimeControl() {
     ]
 
     function handleStart() {
-        setIsInProgress(true)
-        let current = 0;
+        setIsInProgress(true);
         setCurrentTime(new Date());
 
+        setCurrentSubdivision(0);
+
+        let current = 0;
         const interval = setInterval(() => {
-            setCurrentSubdivision(current);
             current += 1;
+
+            setCurrentSubdivision(current);
 
             if (current >= subdivisionOptions[selectedSubdivisionsOption].value) {
                 clearInterval(interval);
@@ -49,6 +52,7 @@ export default function TimeControl() {
             }
         }, lengthOptions[selectedLengthOption].value * 1000 * 60 / subdivisionOptions[selectedSubdivisionsOption].value);
     }
+
 
     const subdivisionOptions = [
         {
