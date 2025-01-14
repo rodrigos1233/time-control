@@ -55,16 +55,13 @@ export default function Clock({fullRoundDuration, subdivisions, startTime}: sele
                 {new Array(subdivisions).fill(0).map((_, index) => (
                     <div
                         key={index}
-                        className={`absolute w-full h-full`}
+                        className={`absolute w-full h-full flex justify-center`}
                         style={{
                             rotate: `${index * 360 / subdivisions}deg`,
                         }}
                     >
                         <div
                             className={`absolute w-0 h-6 border-2 border-black `}
-                            style={{
-                                left: `50%`,
-                            }}
                         />
                     </div>
                 ))}
