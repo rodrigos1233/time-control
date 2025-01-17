@@ -77,11 +77,25 @@ export default function TimeControl() {
         const interval = setInterval(() => {
             current += 1;
 
+            if (current < subdivisionOptions[selectedSubdivisionsOption].value) {
+                const cricketSound = document.getElementById("cricket_sound") as HTMLAudioElement;
+                if (cricketSound) {
+                    cricketSound.currentTime = 0;
+                    cricketSound.play();
+                }
+            }
+
             setCurrentSubdivision(current);
 
             if (current >= subdivisionOptions[selectedSubdivisionsOption].value) {
                 clearInterval(interval);
                 setIsInProgress(false);
+
+                const bellSound = document.getElementById("bell_sound") as HTMLAudioElement;
+                if (bellSound) {
+                    bellSound.currentTime = 0;
+                    bellSound.play();
+                }
             }
         }, lengthOptions[selectedLengthOption].value * 1000 * 60 / subdivisionOptions[selectedSubdivisionsOption].value);
     }
@@ -133,6 +147,8 @@ export default function TimeControl() {
                 </div>
                 )
             }
+            <audio id="bell_sound" src="/bell.mp3"/>
+            <audio id="cricket_sound" src="/cricket.mp3"/>
         </div>
     );
 }
