@@ -5,8 +5,8 @@
 :root {
   --background: #dfdfdf;
   --foreground: #000000;
-  --selectorSelectedBackground: #f59e0b;
-  --selectorHoverBackground: #fde68a;
+  --selectorSelectedBackground: #ecb873;
+  --selectorHoverBackground: rgba(255, 236, 173, 0.53);
 }
 
 @media (prefers-color-scheme: dark) {
