@@ -3,6 +3,7 @@ import {useState, useEffect} from "react";
 import Selector from "@/app/components/selector/selector";
 import {lengthText} from "@/app/utils/lengthText";
 import Clock from "@/app/components/clock/clock";
+import Image from 'next/image';
 
 export default function TimeControl() {
     const [selectedLengthOption, setSelectedLengthOption] = useState(0)
@@ -105,24 +106,33 @@ export default function TimeControl() {
         {
             label:
                 <div className="flex flex-col items-center gap-1 justify-center">
-                    <span>{`2 subdivisions`}</span>
-                    <span>{`${lengthText(lengthOptions[selectedLengthOption].value / 2)} each`}</span>
+                    <span className="flex gap-2">
+                        <Image src={'/circle-2.svg'} alt={"2 subdivisions"} width={22} height={22} />
+                        {`2`}
+                    </span>
+                    <span>{`${lengthText(lengthOptions[selectedLengthOption].value / 2)}`}</span>
                 </div>,
             value: 2,
         },
         {
             label:
                 <div className="flex flex-col items-center gap-1 justify-center">
-                    <span>{`3 subdivisions`}</span>
-                    <span>{`${lengthText(lengthOptions[selectedLengthOption].value / 3)} each`}</span>
+                    <span className="flex gap-2">
+                        <Image src={'/circle-3.svg'} alt={'3 subdivisions'}  width={22} height={22} />
+                        {`3`}
+                    </span>
+                    <span>{`${lengthText(lengthOptions[selectedLengthOption].value / 3)}`}</span>
                 </div>,
             value: 3,
         },
         {
             label:
                 <div className="flex flex-col items-center gap-1 justify-center">
-                    <span>{`4 subdivisions`}</span>
-                    <span>{`${lengthText(lengthOptions[selectedLengthOption].value / 4)} each`}</span>
+                    <span className="flex gap-2">
+                        <Image src={'/circle-4.svg'} alt={"4 subdivisions"} width={22} height={22}/>
+                        {`4`}
+                    </span>
+                    <span>{`${lengthText(lengthOptions[selectedLengthOption].value / 4)}`}</span>
                 </div>,
             value: 4,
         },
