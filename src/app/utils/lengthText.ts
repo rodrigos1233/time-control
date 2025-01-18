@@ -6,5 +6,5 @@ export function lengthText(lengthMinutes: number) {
     const minutes = Math.floor(lengthMinutes);
     const secondsDecimal = lengthMinutes - minutes;
     const seconds = secondsDecimal * 60;
-    return `${minutes} minutes ${seconds < 10 ? "0" : ""}${Math.round(seconds)} seconds`
+    return `${minutes} min ${seconds < 10 ? "0" : ""}${Math.round(seconds)}s`
 }
