@@ -139,12 +139,12 @@ export default function TimeControl() {
     ]
 
     return (
-        <div className="flex flex-col gap-4 w-full">
+        <div className="flex flex-col gap-4 w-full justify-center">
             {!isInProgress && (
                 <>
                     <Selector options={lengthOptions} selectedIndex={selectedLengthOption} setSelectedIndex={setSelectedLengthOption}/>
                     <Selector options={subdivisionOptions} selectedIndex={selectedSubdivisionsOption} setSelectedIndex={setSelectedSubdivisionsOption}/>
-                    <button onClick={handleStart} className="bg-greenButtonBackground rounded-lg px-6 py-4 text-sm sm:text-base text-center flex-grow cursor-pointer">Start</button>
+                    <button onClick={handleStart} className="bg-greenButtonBackground rounded-lg px-6 py-4 text-sm sm:text-base text-center cursor-pointer flex-grow-0">Start</button>
                 </>
             )}
             {isInProgress && (
