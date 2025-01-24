@@ -43,7 +43,7 @@ export default function Home() {
   return (
       <div className="flex flex-col items-stretch min-h-screen font-[family-name:var(--font-geist-sans)]">
           <main className="flex flex-col md:flex-row items-stretch flex-grow">
-              <div className="md:flex-[5_5_0%] flex flex-col justify-center md:flex-grow gap-8 align-start p-6 md:p-20">
+              <div className="md:flex-[5_5_0%] flex-grow flex flex-col justify-center gap-8 align-start p-6 md:p-20">
                   <h1 className=" text-4xl">
                       CrikeTic.com
                   </h1>
