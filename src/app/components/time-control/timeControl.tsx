@@ -144,7 +144,7 @@ export default function TimeControl() {
                 <>
                     <Selector options={lengthOptions} selectedIndex={selectedLengthOption} setSelectedIndex={setSelectedLengthOption}/>
                     <Selector options={subdivisionOptions} selectedIndex={selectedSubdivisionsOption} setSelectedIndex={setSelectedSubdivisionsOption}/>
-                    <button onClick={handleStart} className="bg-lime-600 rounded-lg px-6 py-4 text-sm sm:text-base text-center flex-grow cursor-pointer">Start</button>
+                    <button onClick={handleStart} className="bg-greenButtonBackground rounded-lg px-6 py-4 text-sm sm:text-base text-center flex-grow cursor-pointer">Start</button>
                 </>
             )}
             {isInProgress && (
