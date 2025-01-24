@@ -39,7 +39,7 @@ export default function Selector({selectedIndex, setSelectedIndex, options}: sel
 
 
     return (
-        <div className="flex bg-black/[.05] rounded-xl relative border-4 border-black/[.10] w-full">
+        <div className="flex bg-selectorBackground rounded-xl relative border-4 border-selectorBorder w-full">
             <div
                 className="z-10 absolute bg-selectorSelectedBackground rounded-lg transition-all"
                 style={
