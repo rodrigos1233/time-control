@@ -4,6 +4,7 @@ import Selector from "@/app/components/selector/selector";
 import {lengthText} from "@/app/utils/lengthText";
 import Clock from "@/app/components/clock/clock";
 import Image from 'next/image';
+import Button from "@/app/components/button/button";
 
 export default function TimeControl() {
     const [selectedLengthOption, setSelectedLengthOption] = useState(0)
@@ -144,7 +145,7 @@ export default function TimeControl() {
                 <>
                     <Selector options={lengthOptions} selectedIndex={selectedLengthOption} setSelectedIndex={setSelectedLengthOption}/>
                     <Selector options={subdivisionOptions} selectedIndex={selectedSubdivisionsOption} setSelectedIndex={setSelectedSubdivisionsOption}/>
-                    <button onClick={handleStart} className="bg-greenButtonBackground rounded-lg px-6 py-4 text-sm sm:text-base text-center cursor-pointer flex-grow-0">Start</button>
+                    <Button onClick={handleStart}>Start</Button>
                 </>
             )}
             {isInProgress && (
