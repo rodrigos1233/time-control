@@ -2,7 +2,6 @@
 import {useEffect, useState} from "react";
 import DigitalClock from "@/app/components/clock/digitalClock";
 import Button from "@/app/components/button/button";
-import Image from "next/image";
 import CheckMark from "@/app/assets/svg/checkMark.svg"
 
 type selectorProps = {
