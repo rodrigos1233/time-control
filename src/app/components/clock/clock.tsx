@@ -1,14 +1,20 @@
 "use client";
 import {useEffect, useState} from "react";
 import DigitalClock from "@/app/components/clock/digitalClock";
+import Button from "@/app/components/button/button";
+import Image from "next/image";
+import CheckMark from "@/app/assets/svg/checkMark.svg"
 
 type selectorProps = {
     fullRoundDuration: number;
     subdivisions: number;
     startTime: Date;
+    isFinished: boolean;
+    handleRestart: () => void;
+    setIsInProgress: (isInProgress: boolean) => void;
 }
 
-export default function Clock({fullRoundDuration, subdivisions, startTime}: selectorProps) {
+export default function Clock({fullRoundDuration, subdivisions, startTime, isFinished, handleRestart, setIsInProgress}: selectorProps) {
     const [currentTime, setCurrentTime] = useState(new Date());
 
     useEffect(() => {
@@ -36,38 +42,64 @@ export default function Clock({fullRoundDuration, subdivisions, startTime}: sele
     return (
         <>
             <div
-                className="flex justify-center items-center rounded-full relative border-4 border-black w-96 aspect-square max-w-[90vw]">
-                <div
-                    className="w-4 flex h-4 bg-black rounded-full justify-center items-center"
-                    style={{
-                        rotate: `${progress * 360 / 100}deg`,
-                        transition: "rotate ease-in-out 1s",
-                    }}
-                >
-                    <div
-                        className=" w-0 h-[135px] border-2 border-black relative"
-                        style={{
-                            translate: "0 -3.5rem",
-                        }}
-                    >
-                    </div>
-                </div>
-                {new Array(subdivisions).fill(0).map((_, index) => (
-                    <div
-                        key={index}
-                        className={`absolute w-full h-full flex justify-center`}
-                        style={{
-                            rotate: `${index * 360 / subdivisions}deg`,
-                        }}
-                    >
-                        <div
-                            className={`absolute w-0 h-6 border-2 border-black `}
-                        />
-                    </div>
-                ))}
+                className={`flex justify-center items-center border-4 ${isFinished ? `border-greenButtonBackground bg-greenButtonBackground` : `border-black`} transition-all rounded-full relative w-96 aspect-square max-w-[90vw]`}>
+                {
+                    !isFinished && (
+                        <>
+                            <div
+                                className="w-4 flex h-4 bg-black rounded-full justify-center items-center"
+                                style={{
+                                    rotate: `${progress * 360 / 100}deg`,
+                                    transition: "rotate ease-in-out 1s",
+                                }}
+                            >
+                                <div
+                                    className=" w-0 h-[135px] border-2 border-black relative"
+                                    style={{
+                                        translate: "0 -3.5rem",
+                                    }}
+                                >
+                                </div>
+                            </div>
+                            {new Array(subdivisions).fill(0).map((_, index) => (
+                                <div
+                                    key={index}
+                                    className={`absolute w-full h-full flex justify-center`}
+                                    style={{
+                                        rotate: `${index * 360 / subdivisions}deg`,
+                                    }}
+                                >
+                                    <div
+                                        className={`absolute w-0 h-6 border-2 border-black `}
+                                    />
+                                </div>
+                            ))}
+                        </>
+                    )
+                }
+                {
+                    isFinished && (
+                        <CheckMark width={200} height={200} />
+                    )
+                }
+
             </div>
-            <DigitalClock minutes={minutes} seconds={seconds} size="big"/>
-            <DigitalClock minutes={subdivisionMinutes} seconds={subdivisionSeconds} size="small"/>
+            <div className="h-32 flex flex-col justify-center items-center">
+                {isFinished && (
+                    <div className="flex gap-3">
+                        <Button onClick={handleRestart}>Restart</Button>
+                        <Button onClick={()=>setIsInProgress(false)}>Back</Button>
+                    </div>
+                )
+                }
+                {!isFinished && (
+                    <>
+                        <DigitalClock minutes={minutes} seconds={seconds} size="big"/>
+                        <DigitalClock minutes={subdivisionMinutes} seconds={subdivisionSeconds} size="small"/>
+                    </>
+                )}
+            </div>
+
         </>
 
     );

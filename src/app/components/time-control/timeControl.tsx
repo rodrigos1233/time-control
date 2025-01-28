@@ -4,6 +4,7 @@ import Selector from "@/app/components/selector/selector";
 import {lengthText} from "@/app/utils/lengthText";
 import Clock from "@/app/components/clock/clock";
 import Image from 'next/image';
+import Button from "@/app/components/button/button";
 
 export default function TimeControl() {
     const [selectedLengthOption, setSelectedLengthOption] = useState(0)
@@ -11,6 +12,7 @@ export default function TimeControl() {
     const [isInProgress, setIsInProgress] = useState(false)
     const [currentSubdivision, setCurrentSubdivision] = useState(0);
     const [currentTime, setCurrentTime] = useState(new Date());
+    const [isFinished, setIsFinished] = useState(false);
 
     useEffect(() => {
         let wakeLock: WakeLockSentinel | null = null;
@@ -56,7 +58,7 @@ export default function TimeControl() {
         },
         {
             label: "30 Minutes",
-            value: 30
+            value: 0.3
         },
         {
             label: "60 Minutes",
@@ -70,6 +72,7 @@ export default function TimeControl() {
 
     function handleStart() {
         setIsInProgress(true);
+        setIsFinished(false);
         setCurrentTime(new Date());
 
         setCurrentSubdivision(0);
@@ -90,7 +93,7 @@ export default function TimeControl() {
 
             if (current >= subdivisionOptions[selectedSubdivisionsOption].value) {
                 clearInterval(interval);
-                setIsInProgress(false);
+                setIsFinished(true);
 
                 const bellSound = document.getElementById("bell_sound") as HTMLAudioElement;
                 if (bellSound) {
@@ -144,15 +147,21 @@ export default function TimeControl() {
                 <>
                     <Selector options={lengthOptions} selectedIndex={selectedLengthOption} setSelectedIndex={setSelectedLengthOption}/>
                     <Selector options={subdivisionOptions} selectedIndex={selectedSubdivisionsOption} setSelectedIndex={setSelectedSubdivisionsOption}/>
-                    <button onClick={handleStart} className="bg-greenButtonBackground rounded-lg px-6 py-4 text-sm sm:text-base text-center cursor-pointer flex-grow-0">Start</button>
+                    <Button onClick={handleStart}>Start</Button>
                 </>
             )}
             {isInProgress && (
-                <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-4 transition-colors" style={{ backgroundColor: `#${colorsOptions[currentSubdivision]}` }}>
+                <div
+                    className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-4 transition-colors"
+                    style={{ backgroundColor: `${!isFinished ? `#${colorsOptions[currentSubdivision]}` : 'var(--background)'}` }}
+                >
                     <Clock
                         fullRoundDuration={lengthOptions[selectedLengthOption].value * 1000 * 60}
                         subdivisions={subdivisionOptions[selectedSubdivisionsOption].value}
                         startTime={currentTime}
+                        isFinished={isFinished}
+                        handleRestart={handleStart}
+                        setIsInProgress={setIsInProgress}
                     />
                 </div>
                 )
