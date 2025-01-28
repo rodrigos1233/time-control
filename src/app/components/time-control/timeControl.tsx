@@ -58,7 +58,7 @@ export default function TimeControl() {
         },
         {
             label: "30 Minutes",
-            value: 0.3
+            value: 30
         },
         {
             label: "60 Minutes",
