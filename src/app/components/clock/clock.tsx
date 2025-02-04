@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import DigitalClock from "@/app/components/clock/digitalClock";
 import Button from "@/app/components/button/button";
 import CheckMark from "@/app/assets/svg/checkMark.svg"
+import EndScreen from "@/app/components/clock/endScreen";
 
 type selectorProps = {
     fullRoundDuration: number;
@@ -41,7 +42,7 @@ export default function Clock({fullRoundDuration, subdivisions, startTime, isFin
     return (
         <>
             <div
-                className={`flex justify-center items-center border-4 ${isFinished ? `border-greenButtonBackground bg-greenButtonBackground` : `border-black`} transition-all rounded-full relative w-96 aspect-square max-w-[90vw]`}>
+                className={`flex justify-center items-center border-4 ${isFinished ? `border-greenButtonBackground bg-greenButtonBackground` : `border-black`} transition-all rounded-full relative w-96 aspect-square max-w-[90vw] overflow-hidden`}>
                 {
                     !isFinished && (
                         <>
@@ -78,7 +79,7 @@ export default function Clock({fullRoundDuration, subdivisions, startTime, isFin
                 }
                 {
                     isFinished && (
-                        <CheckMark width={200} height={200} />
+                        <EndScreen />
                     )
                 }
 
