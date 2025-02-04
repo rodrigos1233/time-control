@@ -2,8 +2,9 @@
 import {useEffect, useState} from "react";
 import DigitalClock from "@/app/components/clock/digitalClock";
 import Button from "@/app/components/button/button";
-import CheckMark from "@/app/assets/svg/checkMark.svg"
 import EndScreen from "@/app/components/clock/endScreen";
+import Rewind from "@/app/assets/svg/rewind.svg";
+import Close from "@/app/assets/svg/close.svg";
 
 type selectorProps = {
     fullRoundDuration: number;
@@ -87,8 +88,14 @@ export default function Clock({fullRoundDuration, subdivisions, startTime, isFin
             <div className="h-32 flex flex-col justify-center items-center">
                 {isFinished && (
                     <div className="flex gap-3">
-                        <Button onClick={handleRestart}>Restart</Button>
-                        <Button onClick={()=>setIsInProgress(false)}>Back</Button>
+                        <Button onClick={handleRestart} className={`flex items-center gap-3`}>
+                            <Rewind width={25} height={25}/>
+                            Restart
+                        </Button>
+                        <Button onClick={()=>setIsInProgress(false)} className={`flex items-center gap-3`}>
+                            <Close width={25} height={25}/>
+                            Back
+                        </Button>
                     </div>
                 )
                 }

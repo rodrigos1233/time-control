@@ -5,6 +5,7 @@ import {lengthText} from "@/app/utils/lengthText";
 import Clock from "@/app/components/clock/clock";
 import Image from 'next/image';
 import Button from "@/app/components/button/button";
+import Play from "@/app/assets/svg/play.svg";
 
 export default function TimeControl() {
     const [selectedLengthOption, setSelectedLengthOption] = useState(0)
@@ -54,7 +55,7 @@ export default function TimeControl() {
     const lengthOptions = [
         {
             label: "45 Minutes",
-            value: 0.045
+            value: 45
         },
         {
             label: "30 Minutes",
@@ -147,7 +148,10 @@ export default function TimeControl() {
                 <>
                     <Selector options={lengthOptions} selectedIndex={selectedLengthOption} setSelectedIndex={setSelectedLengthOption}/>
                     <Selector options={subdivisionOptions} selectedIndex={selectedSubdivisionsOption} setSelectedIndex={setSelectedSubdivisionsOption}/>
-                    <Button onClick={handleStart}>Start</Button>
+                    <Button onClick={handleStart} className={`flex items-center gap-3 justify-center`}>
+                        <Play width={25} height={25}/>
+                        Start
+                    </Button>
                 </>
             )}
             {isInProgress && (
