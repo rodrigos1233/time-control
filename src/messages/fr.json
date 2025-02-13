@@ -1,6 +1,6 @@
 {
   "title": "CrikeTic.com",
-  "description": "Un minuteur interactif pour la concentration, le rythme et la productivité.",
+  "description": "Un minuteur interactif pour une meilleure gestion du temps.",
   "footer": "© {year} Rodrigo Salazar. Tous droits réservés.",
   "instructions": [
     {
@@ -19,5 +19,13 @@
       "title": "Indices sonores:",
       "content": "Écoute des grillons à chaque intervalle et une cloche lorsque le temps est écoulé."
     }
-  ]
+  ],
+  "length": {
+    "minutes": "{minutes} minutes",
+    "seconds": "{seconds} secondes",
+    "both": "{minutes}min {seconds}s"
+  },
+  "startButton": "Démarrer",
+  "restartButton": "Redémarrer",
+  "backButton": "Retour"
 }

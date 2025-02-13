@@ -23,5 +23,13 @@
       "title": "Stay on Track:",
       "content": "Use visual and sound cues to manage your time effectively."
     }
-  ]
+  ],
+  "length": {
+    "minutes": "{minutes} minutes",
+    "seconds": "{seconds} seconds",
+    "both": "{minutes}min {seconds}s"
+  },
+  "startButton": "Start",
+  "restartButton": "Restart",
+  "backButton": "Back"
 }

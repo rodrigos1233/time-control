@@ -5,6 +5,7 @@ import Button from "@/app/components/button/button";
 import EndScreen from "@/app/components/clock/endScreen";
 import Rewind from "@/app/assets/svg/rewind.svg";
 import Close from "@/app/assets/svg/close.svg";
+import {useTranslations} from "next-intl";
 
 type selectorProps = {
     fullRoundDuration: number;
@@ -17,6 +18,7 @@ type selectorProps = {
 
 export default function Clock({fullRoundDuration, subdivisions, startTime, isFinished, handleRestart, setIsInProgress}: selectorProps) {
     const [currentTime, setCurrentTime] = useState(new Date());
+    const t = useTranslations();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -90,11 +92,11 @@ export default function Clock({fullRoundDuration, subdivisions, startTime, isFin
                     <div className="flex gap-3">
                         <Button onClick={handleRestart} className={`flex items-center gap-3`}>
                             <Rewind width={25} height={25}/>
-                            Restart
+                            {t("restartButton")}
                         </Button>
                         <Button onClick={()=>setIsInProgress(false)} className={`flex items-center gap-3`}>
                             <Close width={25} height={25}/>
-                            Back
+                            {t("backButton")}
                         </Button>
                     </div>
                 )

@@ -1,11 +1,12 @@
 "use client";
 import {useState, useEffect} from "react";
 import Selector from "@/app/components/selector/selector";
-import {lengthText} from "@/app/utils/lengthText";
+import {useLengthText} from "@/app/hooks/useLengthText";
 import Clock from "@/app/components/clock/clock";
 import Image from 'next/image';
 import Button from "@/app/components/button/button";
 import Play from "@/app/assets/svg/play.svg";
+import {useTranslations} from "next-intl";
 
 export default function TimeControl() {
     const [selectedLengthOption, setSelectedLengthOption] = useState(0)
@@ -14,6 +15,7 @@ export default function TimeControl() {
     const [currentSubdivision, setCurrentSubdivision] = useState(0);
     const [currentTime, setCurrentTime] = useState(new Date());
     const [isFinished, setIsFinished] = useState(false);
+    const t = useTranslations();
 
     useEffect(() => {
         let wakeLock: WakeLockSentinel | null = null;
@@ -52,21 +54,23 @@ export default function TimeControl() {
         "FFEBC6",
     ]
 
+    const lengthText = useLengthText();
+
     const lengthOptions = [
         {
-            label: "45 Minutes",
+            label: lengthText(45),
             value: 45
         },
         {
-            label: "30 Minutes",
+            label: lengthText(30),
             value: 30
         },
         {
-            label: "60 Minutes",
+            label: lengthText(60),
             value: 60
         },
         {
-            label: "15 Minutes",
+            label: lengthText(15),
             value: 15
         }
     ]
@@ -150,7 +154,7 @@ export default function TimeControl() {
                     <Selector options={subdivisionOptions} selectedIndex={selectedSubdivisionsOption} setSelectedIndex={setSelectedSubdivisionsOption}/>
                     <Button onClick={handleStart} className={`flex items-center gap-3 justify-center`}>
                         <Play width={25} height={25}/>
-                        Start
+                        {t("startButton")}
                     </Button>
                 </>
             )}
