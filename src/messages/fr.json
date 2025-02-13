@@ -1,0 +1,31 @@
+{
+  "title": "CrikeTic.com",
+  "description": "Un minuteur interactif pour une meilleure gestion du temps.",
+  "footer": "© {year} Rodrigo Salazar. Tous droits réservés.",
+  "instructions": [
+    {
+      "title": "Sélectionne une durée:",
+      "content": "Choisis entre 15, 30, 45, ou 60 minutes."
+    },
+    {
+      "title": "Définis les subdivisions:",
+      "content": "Divisez le temps en petits intervalles."
+    },
+    {
+      "title": "Appuye sur Démarrer:",
+      "content": "Regarde l'horloge analogique tourner et suis la progression visuellement."
+    },
+    {
+      "title": "Indices sonores:",
+      "content": "Écoute des grillons à chaque intervalle et une cloche lorsque le temps est écoulé."
+    }
+  ],
+  "length": {
+    "minutes": "{minutes} minutes",
+    "seconds": "{seconds} secondes",
+    "both": "{minutes}min {seconds}s"
+  },
+  "startButton": "Démarrer",
+  "restartButton": "Redémarrer",
+  "backButton": "Retour"
+}

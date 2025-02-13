@@ -1,0 +1,35 @@
+{
+  "title": "CrikeTic.com",
+  "description": "An interactive timer for focus, rhythm, and productivity.",
+  "footer": "© {year} Rodrigo Salazar. All rights reserved.",
+  "instructions": [
+    {
+      "title": "Select a Duration:",
+      "content": "Choose from 15, 30, 45, or 60 minutes."
+    },
+    {
+      "title": "Set Subdivisions:",
+      "content": "Break the time into smaller intervals for better focus."
+    },
+    {
+      "title": "Hit Start:",
+      "content": "Watch the analog clock tick and track progress visually."
+    },
+    {
+      "title": "Auditory Cues:",
+      "content": "Hear crickets at each interval and a bell when time is up."
+    },
+    {
+      "title": "Stay on Track:",
+      "content": "Use visual and sound cues to manage your time effectively."
+    }
+  ],
+  "length": {
+    "minutes": "{minutes} minutes",
+    "seconds": "{seconds} seconds",
+    "both": "{minutes}min {seconds}s"
+  },
+  "startButton": "Start",
+  "restartButton": "Restart",
+  "backButton": "Back"
+}

@@ -1,36 +1,19 @@
 import TimeControl from "@/app/components/time-control/timeControl";
+import './i18n';
+import { useTranslations } from "next-intl";
 
 export default function Home() {
     const currentYear = new Date().getFullYear();
     const startYear = 2025;
+
+    const t = useTranslations();
 
     type ListItemProps = {
         title: string;
         content: string;
     };
 
-    const listItems: ListItemProps[] = [
-        {
-            title: "Select a Duration:",
-            content: "Choose from 15, 30, 45, or 60 minutes.",
-        },
-        {
-            title: "Set Subdivisions:",
-            content: "Break the time into smaller intervals for better focus.",
-        },
-        {
-            title: "Hit Start:",
-            content: "Watch the analog clock tick and track progress visually.",
-        },
-        {
-            title: "Auditory Cues:",
-            content: "Hear crickets at each interval and a bell when time is up.",
-        },
-        {
-            title: "Stay on Track:",
-            content: "Use visual and sound cues to manage your time effectively.",
-        },
-    ];
+    const instructions: ListItemProps[] = t.raw("instructions");
 
     const ListItem: React.FC<ListItemProps> = ({ title, content }) => {
         return (
@@ -40,19 +23,23 @@ export default function Home() {
         );
     };
 
+    const footerYearDisplay = currentYear === startYear ? `${startYear}` : `${startYear} - ${currentYear}`;
+
   return (
       <div className="flex flex-col items-stretch min-h-screen font-[family-name:var(--font-geist-sans)]">
           <main className="flex flex-col md:flex-row items-stretch flex-grow">
               <div className="md:flex-[5_5_0%] flex-grow flex flex-col justify-center gap-8 align-start p-2 md:p-20">
                   <h1 className=" text-4xl">
-                      CrikeTic.com
+                      {t("title")}
                   </h1>
                   <p className="text-lg mb-6">
-                      An interactive timer for focus, rhythm, and productivity.
+                      {t("description")}
                   </p>
                   <ul className="list-disc space-y-3 text-left pl-5">
-                      {listItems.map((item, index) => (
-                          <ListItem key={index} title={item.title} content={item.content}/>
+                      {instructions.map((item, index) => (
+                          <li key={index}>
+                              <span className="font-semibold">{item.title}</span> {item.content}
+                          </li>
                       ))}
                   </ul>
               </div>
@@ -62,8 +49,7 @@ export default function Home() {
           </main>
           <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center p-2 md:p-6">
               <p className="font-extralight text-xs">
-              &copy; {currentYear === startYear ? `${startYear}` : `${startYear} - ${currentYear}`} Rodrigo Salazar. All
-                  rights reserved.
+                  {t("footer", { year: footerYearDisplay })}
               </p>
           </footer>
       </div>
