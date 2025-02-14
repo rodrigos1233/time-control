@@ -15,10 +15,23 @@ type selectorProps = {
 export default function Selector({selectedIndex, setSelectedIndex, options}: selectorProps) {
     const optionRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [optionStyles, setOptionStyles] = useState({ left: 0, width: 0 });
+    const [isBouncing, setIsBouncing] = useState(false);
+
+    const bounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     function handleClick(index: number) {
         setSelectedIndex(index);
+
+        // Prevent multiple quick state updates by clearing the previous timeout
+        if (bounceTimeoutRef.current) {
+            clearTimeout(bounceTimeoutRef.current);
+        }
+
+        setIsBouncing(true);
+        bounceTimeoutRef.current = setTimeout(() => setIsBouncing(false), 100);
     }
+
+    console.log({isBouncing})
 
     useEffect(() => {
         function updateOptionStyles() {
@@ -39,14 +52,15 @@ export default function Selector({selectedIndex, setSelectedIndex, options}: sel
 
 
     return (
-        <div className="flex bg-selectorBackground rounded-xl relative border-4 border-selectorBorder w-full">
+        <div className="flex bg-selectorBackground rounded-xl relative border-4 border-selectorBorder w-full overflow-hidden">
             <div
-                className="z-10 absolute bg-selectorSelectedBackground rounded-lg transition-all"
+                className="z-10 absolute bg-selectorSelectedBackground rounded-lg transition-all duration-850 ease-custom-bounce"
                 style={
                 {
                     left: `${optionStyles.left}px`,
                     width: `${optionStyles.width}px`,
                     height: 'calc(100% - 0rem)',
+                    transform: isBouncing ? 'scaleX(0.5)' : 'scaleX(1)',
                 }
                 }
             >
