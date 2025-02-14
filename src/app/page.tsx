@@ -1,3 +1,4 @@
+export const runtime = "edge";
 import TimeControl from "@/app/components/time-control/timeControl";
 import './i18n';
 import { useTranslations } from "next-intl";
@@ -37,9 +38,7 @@ export default function Home() {
                   </p>
                   <ul className="list-disc space-y-3 text-left pl-5">
                       {instructions.map((item, index) => (
-                          <li key={index}>
-                              <span className="font-semibold">{item.title}</span> {item.content}
-                          </li>
+                          <ListItem content={item.content} title={item.title} key={index} />
                       ))}
                   </ul>
               </div>
