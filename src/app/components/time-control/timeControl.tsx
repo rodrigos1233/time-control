@@ -6,7 +6,7 @@ import Clock from "@/app/components/clock/clock";
 import Image from 'next/image';
 import Button from "@/app/components/button/button";
 import Play from "@/app/assets/svg/play.svg";
-import {useTranslations} from "next-intl";
+import { useTranslations } from "next-intl";
 
 export default function TimeControl() {
     const [selectedLengthOption, setSelectedLengthOption] = useState(0)
