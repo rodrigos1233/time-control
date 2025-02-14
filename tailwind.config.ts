@@ -19,6 +19,9 @@ export default {
         selectorBorder: "var(--selectorBorder)",
         footerBackground: "var(--footerBackground)",
       },
+      transitionTimingFunction: {
+        'custom-bounce': 'cubic-bezier(0.68, -0.6, 0.32, 1.6)',
+      },
     },
   },
   plugins: [],
