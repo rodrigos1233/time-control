@@ -26,7 +26,7 @@ export default function Selector({ selectedIndex, setSelectedIndex, options }: S
         }
 
         setIsBouncing(true);
-        bounceTimeoutRef.current = setTimeout(() => setIsBouncing(false), 350);
+        bounceTimeoutRef.current = setTimeout(() => setIsBouncing(false), 250);
     }
 
     function handleKeyDown(event: React.KeyboardEvent, index: number) {
@@ -65,7 +65,7 @@ export default function Selector({ selectedIndex, setSelectedIndex, options }: S
         <div className="flex bg-selectorBackground rounded-xl relative border-4 border-selectorBorder w-full">
             <div className="absolute w-full h-full flex items-center justify-center overflow-hidden">
                 <div
-                    className="z-10 absolute bg-selectorSelectedBackground rounded-lg transition-all duration-700 ease-custom-bounce"
+                    className="z-10 absolute bg-selectorSelectedBackground rounded-lg transition-all duration-500 ease-custom-bounce"
                     style={{
                         left: `${optionStyles.left}px`,
                         width: `${optionStyles.width}px`,
