@@ -71,8 +71,6 @@ export default function TimeControl() {
 
     }, [selectedSubdivisionsOption, isFinished])
 
-    console.log({selectedColors})
-
     const lengthText = useLengthText();
 
     const currentColor = `#${window.matchMedia('(prefers-color-scheme: dark)').matches ? colors[selectedColors[currentSubdivision]].dark : colors[selectedColors[currentSubdivision]].light}`;
