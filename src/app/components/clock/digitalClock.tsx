@@ -16,7 +16,7 @@ export default function DigitalClock({minutes, seconds, size}: digitalClockProps
     }
 
     return (
-        <div className={`text-center ${size === 'big' ? 'text-4xl' : 'text-2xl'} font-[family-name:var(--font-clock)] flex`}>
+        <div className={`text-center ${size === 'big' ? 'text-4xl' : 'text-2xl'} font-[family-name:var(--font-clock)] shadow-xl pt-3 pr-4 pl-4 pb-2 rounded-full flex bg-background`}>
             {renderDigits(minutes.toString())}
             <div>:</div>
             {renderDigits(displayedSeconds)}

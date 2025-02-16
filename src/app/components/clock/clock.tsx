@@ -45,19 +45,20 @@ export default function Clock({fullRoundDuration, subdivisions, startTime, isFin
     return (
         <>
             <div
-                className={`flex justify-center items-center border-4 ${isFinished ? `border-greenButtonBackground bg-greenButtonBackground` : `border-black`} transition-all rounded-full relative w-96 aspect-square max-w-[90vw] overflow-hidden`}>
+                className={`flex justify-center items-center border-4 ${isFinished ? `border-greenButtonBackground bg-greenButtonBackground` : `border-foreground`} transition-all rounded-full relative w-96 aspect-square max-w-[90vw] overflow-hidden`}
+            >
                 {
                     !isFinished && (
                         <>
                             <div
-                                className="w-4 flex h-4 bg-black rounded-full justify-center items-center"
+                                className="w-4 flex h-4 bg-foreground rounded-full justify-center items-center"
                                 style={{
                                     rotate: `${progress * 360 / 100}deg`,
                                     transition: "rotate ease-in-out 1s",
                                 }}
                             >
                                 <div
-                                    className=" w-0 h-[135px] border-2 border-black relative"
+                                    className=" w-0 h-[135px] border-2 border-foreground relative"
                                     style={{
                                         translate: "0 -3.5rem",
                                     }}
@@ -73,7 +74,7 @@ export default function Clock({fullRoundDuration, subdivisions, startTime, isFin
                                     }}
                                 >
                                     <div
-                                        className={`absolute w-0 h-6 border-2 border-black `}
+                                        className={`absolute w-0 h-6 border-2 border-foreground `}
                                     />
                                 </div>
                             ))}
@@ -102,10 +103,10 @@ export default function Clock({fullRoundDuration, subdivisions, startTime, isFin
                 )
                 }
                 {!isFinished && (
-                    <>
+                    <div className="flex flex-col gap-3 justify-center items-center">
                         <DigitalClock minutes={minutes} seconds={seconds} size="big"/>
                         <DigitalClock minutes={subdivisionMinutes} seconds={subdivisionSeconds} size="small"/>
-                    </>
+                    </div>
                 )}
             </div>
 
