@@ -15,6 +15,7 @@ export default function TimeControl() {
     const [currentSubdivision, setCurrentSubdivision] = useState(0);
     const [currentTime, setCurrentTime] = useState(new Date());
     const [isFinished, setIsFinished] = useState(false);
+    const [selectedColors, setSelectedColors] = useState([0,1,2,3,4]);
     const t = useTranslations();
 
     useEffect(() => {
@@ -46,15 +47,35 @@ export default function TimeControl() {
         };
     }, [isInProgress]);
 
-    const colorsOptions = [
-        "003844",
-        "006C67",
-        "F194B4",
-        "FFB100",
-        "FFEBC6",
-    ]
+    const colors = [
+        { dark: "003844", light: "70E5FF" },
+        { dark: "006C67", light: "85FFF9" },
+        { dark: "7E1037", light: "F194B4" },
+        { dark: "664700", light: "FFB100" },
+        { dark: "A36A00", light: "FFEBC6" },
+        { dark: "05614F", light: "0FF4C6" },
+        { dark: "1F32BE", light: "96A0EE" }
+    ];
+
+    function selectRandomColors(subdivisions: number): number[] {
+        const indexes = new Set<number>();
+        while (indexes.size < subdivisions + 2) {
+            indexes.add(Math.floor(Math.random() * colors.length));
+        }
+        return Array.from(indexes);
+    }
+
+    useEffect(() => {
+        const randomColors = selectRandomColors(selectedSubdivisionsOption)
+        setSelectedColors(randomColors);
+
+    }, [selectedSubdivisionsOption, isFinished])
+
+    console.log({selectedColors})
 
     const lengthText = useLengthText();
+
+    const currentColor = `#${window.matchMedia('(prefers-color-scheme: dark)').matches ? colors[selectedColors[currentSubdivision]].dark : colors[selectedColors[currentSubdivision]].light}`;
 
     const lengthOptions = [
         {
@@ -98,6 +119,7 @@ export default function TimeControl() {
 
             if (current >= subdivisionOptions[selectedSubdivisionsOption].value) {
                 clearInterval(interval);
+                setCurrentSubdivision(0);
                 setIsFinished(true);
 
                 const bellSound = document.getElementById("bell_sound") as HTMLAudioElement;
@@ -161,7 +183,7 @@ export default function TimeControl() {
             {isInProgress && (
                 <div
                     className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-4 transition-colors"
-                    style={{ backgroundColor: `${!isFinished ? `#${colorsOptions[currentSubdivision]}` : 'var(--background)'}` }}
+                    style={{ backgroundColor: `${!isFinished ? `${currentColor}` : 'var(--background)'}` }}
                 >
                     <Clock
                         fullRoundDuration={lengthOptions[selectedLengthOption].value * 1000 * 60}
