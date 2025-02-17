@@ -63,7 +63,7 @@ export default function Selector({ selectedIndex, setSelectedIndex, options }: S
 
     return (
         <div className="flex bg-selectorBackground rounded-xl relative border-4 border-selectorBorder w-full">
-            <div className="absolute w-full h-full flex items-center justify-center overflow-hidden">
+            <div className="absolute w-full h-full rounded-lg flex items-center justify-center overflow-hidden">
                 <div
                     className="z-10 absolute bg-selectorSelectedBackground rounded-lg transition-all duration-500 ease-custom-bounce"
                     style={{
