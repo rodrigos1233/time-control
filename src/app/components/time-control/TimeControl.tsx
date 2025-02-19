@@ -1,12 +1,12 @@
 "use client";
-import {useState, useEffect} from "react";
+import { useState, useEffect, JSX } from "react";
 import Selector from "@/app/components/selector/Selector";
 import {useLengthText} from "@/app/hooks/useLengthText";
-import Clock from "@/app/components/clock/Clock";
 import Image from 'next/image';
 import Button from "@/app/components/button/Button";
 import Play from "@/app/assets/svg/play.svg";
 import { useTranslations } from "next-intl";
+import TimerDisplay from "@/app/components/time-control/TimerDisplay";
 
 export default function TimeControl() {
     const [selectedLengthOption, setSelectedLengthOption] = useState(0)
@@ -75,21 +75,21 @@ export default function TimeControl() {
 
     const currentColor = `#${window.matchMedia('(prefers-color-scheme: dark)').matches ? colors[selectedColors[currentSubdivision]].dark : colors[selectedColors[currentSubdivision]].light}`;
 
-    const lengthOptions = [
+    const lengthOptions: { label: string, value: number }[] = [
         {
-            label: lengthText(45),
+            label: `${lengthText(45)}`,
             value: 45
         },
         {
-            label: lengthText(30),
+            label: `${lengthText(30)}`,
             value: 30
         },
         {
-            label: lengthText(60),
+            label: `${lengthText(60)}`,
             value: 60
         },
         {
-            label: lengthText(15),
+            label: `${lengthText(15)}`,
             value: 15
         }
     ]
@@ -130,7 +130,7 @@ export default function TimeControl() {
     }
 
 
-    const subdivisionOptions = [
+    const subdivisionOptions: { label: JSX.Element, value: number }[] = [
         {
             label:
                 <div className="flex flex-col items-center gap-1 justify-center">
@@ -179,19 +179,17 @@ export default function TimeControl() {
                 </>
             )}
             {isInProgress && (
-                <div
-                    className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center gap-4 transition-colors"
-                    style={{ backgroundColor: `${!isFinished ? `${currentColor}` : 'var(--background)'}` }}
-                >
-                    <Clock
-                        fullRoundDuration={lengthOptions[selectedLengthOption].value * 1000 * 60}
-                        subdivisions={subdivisionOptions[selectedSubdivisionsOption].value}
-                        startTime={currentTime}
-                        isFinished={isFinished}
-                        handleRestart={handleStart}
-                        setIsInProgress={setIsInProgress}
-                    />
-                </div>
+                <TimerDisplay
+                    isFinished={isFinished}
+                    currentColor={currentColor}
+                    lengthOptions={lengthOptions}
+                    selectedLengthOption={selectedLengthOption}
+                    subdivisionOptions={subdivisionOptions}
+                    selectedSubdivisionsOption={selectedSubdivisionsOption}
+                    currentTime={currentTime}
+                    handleStart={handleStart}
+                    setIsInProgress={setIsInProgress}
+                />
                 )
             }
             <audio id="bell_sound" src="/bell.mp3"/>
