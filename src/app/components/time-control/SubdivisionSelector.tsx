@@ -1,7 +1,7 @@
 import Selector from "@/app/components/selector/Selector";
 import Image from 'next/image';
-import {useLengthText} from "@/app/hooks/useLengthText";
-import {lengthOptions} from "@/app/components/time-control/LengthSelector";
+import { useLengthText } from "@/app/hooks/useLengthText";
+import { lengthOptions } from "@/app/components/time-control/LengthSelector";
 
 export const subdivisionOptions: number[] = [2, 3, 4];
 

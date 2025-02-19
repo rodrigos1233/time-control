@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, JSX } from "react";
+import { useState, useEffect } from "react";
 import TimerDisplay from "@/app/components/time-control/TimerDisplay";
 import StartButton from "@/app/components/time-control/StartButton";
 import SubdivisionSelector, {subdivisionOptions} from "@/app/components/time-control/SubdivisionSelector";

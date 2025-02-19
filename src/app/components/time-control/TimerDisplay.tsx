@@ -1,7 +1,6 @@
 import Clock from "@/app/components/clock/Clock";
-import { JSX } from "react";
-import {subdivisionOptions} from "@/app/components/time-control/SubdivisionSelector";
-import {lengthOptions} from "@/app/components/time-control/LengthSelector";
+import { subdivisionOptions } from "@/app/components/time-control/SubdivisionSelector";
+import { lengthOptions } from "@/app/components/time-control/LengthSelector";
 
 type TimerDisplayProps = {
     isFinished: boolean;
