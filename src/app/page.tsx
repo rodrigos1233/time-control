@@ -1,5 +1,5 @@
 export const runtime = "edge";
-import TimeControl from "@/app/components/time-control/timeControl";
+import TimeControl from "@/app/components/time-control/TimeControl";
 import './i18n';
 import { useTranslations } from "next-intl";
 

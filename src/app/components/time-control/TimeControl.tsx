@@ -1,10 +1,10 @@
 "use client";
 import {useState, useEffect} from "react";
-import Selector from "@/app/components/selector/selector";
+import Selector from "@/app/components/selector/Selector";
 import {useLengthText} from "@/app/hooks/useLengthText";
-import Clock from "@/app/components/clock/clock";
+import Clock from "@/app/components/clock/Clock";
 import Image from 'next/image';
-import Button from "@/app/components/button/button";
+import Button from "@/app/components/button/Button";
 import Play from "@/app/assets/svg/play.svg";
 import { useTranslations } from "next-intl";
 

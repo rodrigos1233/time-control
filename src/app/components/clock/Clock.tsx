@@ -1,8 +1,8 @@
 "use client";
 import {useEffect, useState} from "react";
-import DigitalClock from "@/app/components/clock/digitalClock";
-import Button from "@/app/components/button/button";
-import EndScreen from "@/app/components/clock/endScreen";
+import DigitalClock from "@/app/components/clock/DigitalClock";
+import Button from "@/app/components/button/Button";
+import EndScreen from "@/app/components/clock/EndScreen";
 import Rewind from "@/app/assets/svg/rewind.svg";
 import Close from "@/app/assets/svg/close.svg";
 import {useTranslations} from "next-intl";
