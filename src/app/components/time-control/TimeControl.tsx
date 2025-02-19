@@ -1,13 +1,9 @@
 "use client";
 import { useState, useEffect, JSX } from "react";
-import Selector from "@/app/components/selector/Selector";
-import {useLengthText} from "@/app/hooks/useLengthText";
-import Image from 'next/image';
-import Button from "@/app/components/button/Button";
-import Play from "@/app/assets/svg/play.svg";
-import { useTranslations } from "next-intl";
 import TimerDisplay from "@/app/components/time-control/TimerDisplay";
 import StartButton from "@/app/components/time-control/StartButton";
+import SubdivisionSelector, {subdivisionOptions} from "@/app/components/time-control/SubdivisionSelector";
+import LengthSelector, {lengthOptions} from "@/app/components/time-control/LengthSelector";
 
 export default function TimeControl() {
     const [selectedLengthOption, setSelectedLengthOption] = useState(0)
@@ -17,7 +13,6 @@ export default function TimeControl() {
     const [currentTime, setCurrentTime] = useState(new Date());
     const [isFinished, setIsFinished] = useState(false);
     const [selectedColors, setSelectedColors] = useState([0,1,2,3,4]);
-    const t = useTranslations();
 
     useEffect(() => {
         let wakeLock: WakeLockSentinel | null = null;
@@ -72,28 +67,10 @@ export default function TimeControl() {
 
     }, [selectedSubdivisionsOption, isFinished])
 
-    const lengthText = useLengthText();
-
     const currentColor = `#${window.matchMedia('(prefers-color-scheme: dark)').matches ? colors[selectedColors[currentSubdivision]].dark : colors[selectedColors[currentSubdivision]].light}`;
 
-    const lengthOptions: { label: string, value: number }[] = [
-        {
-            label: `${lengthText(45)}`,
-            value: 45
-        },
-        {
-            label: `${lengthText(30)}`,
-            value: 30
-        },
-        {
-            label: `${lengthText(60)}`,
-            value: 60
-        },
-        {
-            label: `${lengthText(15)}`,
-            value: 15
-        }
-    ]
+    const subdivisions = subdivisionOptions[selectedSubdivisionsOption];
+    const length = lengthOptions[selectedLengthOption];
 
     function handleStart() {
         setIsInProgress(true);
@@ -106,7 +83,7 @@ export default function TimeControl() {
         const interval = setInterval(() => {
             current += 1;
 
-            if (current < subdivisionOptions[selectedSubdivisionsOption].value) {
+            if (current < subdivisions) {
                 const cricketSound = document.getElementById("cricket_sound") as HTMLAudioElement;
                 if (cricketSound) {
                     cricketSound.currentTime = 0;
@@ -116,7 +93,7 @@ export default function TimeControl() {
 
             setCurrentSubdivision(current);
 
-            if (current >= subdivisionOptions[selectedSubdivisionsOption].value) {
+            if (current >= subdivisions) {
                 clearInterval(interval);
                 setCurrentSubdivision(0);
                 setIsFinished(true);
@@ -127,52 +104,15 @@ export default function TimeControl() {
                     bellSound.play();
                 }
             }
-        }, lengthOptions[selectedLengthOption].value * 1000 * 60 / subdivisionOptions[selectedSubdivisionsOption].value);
+        }, length * 1000 * 60 / subdivisions);
     }
-
-
-    const subdivisionOptions: { label: JSX.Element, value: number }[] = [
-        {
-            label:
-                <div className="flex flex-col items-center gap-1 justify-center">
-                    <span className="flex gap-2">
-                        <Image src={'/circle-2.svg'} alt={"2 subdivisions"} width={22} height={22} />
-                        {`2`}
-                    </span>
-                    <span>{`${lengthText(lengthOptions[selectedLengthOption].value / 2)}`}</span>
-                </div>,
-            value: 2,
-        },
-        {
-            label:
-                <div className="flex flex-col items-center gap-1 justify-center">
-                    <span className="flex gap-2">
-                        <Image src={'/circle-3.svg'} alt={'3 subdivisions'}  width={22} height={22} />
-                        {`3`}
-                    </span>
-                    <span>{`${lengthText(lengthOptions[selectedLengthOption].value / 3)}`}</span>
-                </div>,
-            value: 3,
-        },
-        {
-            label:
-                <div className="flex flex-col items-center gap-1 justify-center">
-                    <span className="flex gap-2">
-                        <Image src={'/circle-4.svg'} alt={"4 subdivisions"} width={22} height={22}/>
-                        {`4`}
-                    </span>
-                    <span>{`${lengthText(lengthOptions[selectedLengthOption].value / 4)}`}</span>
-                </div>,
-            value: 4,
-        },
-    ]
 
     return (
         <div className="flex flex-col gap-4 w-full justify-center">
             {!isInProgress && (
                 <>
-                    <Selector options={lengthOptions} selectedIndex={selectedLengthOption} setSelectedIndex={setSelectedLengthOption}/>
-                    <Selector options={subdivisionOptions} selectedIndex={selectedSubdivisionsOption} setSelectedIndex={setSelectedSubdivisionsOption}/>
+                    <LengthSelector selectedLengthOption={selectedLengthOption} setSelectedLengthOption={setSelectedLengthOption} />
+                    <SubdivisionSelector selectedSubdivisionsOption={selectedSubdivisionsOption} setSelectedSubdivisionsOption={setSelectedSubdivisionsOption} selectedLengthOption={selectedLengthOption} />
                     <StartButton handleStart={handleStart}/>
                 </>
             )}
@@ -180,9 +120,7 @@ export default function TimeControl() {
                 <TimerDisplay
                     isFinished={isFinished}
                     currentColor={currentColor}
-                    lengthOptions={lengthOptions}
                     selectedLengthOption={selectedLengthOption}
-                    subdivisionOptions={subdivisionOptions}
                     selectedSubdivisionsOption={selectedSubdivisionsOption}
                     currentTime={currentTime}
                     handleStart={handleStart}
