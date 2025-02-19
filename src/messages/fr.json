@@ -21,8 +21,8 @@
     }
   ],
   "length": {
-    "minutes": "{minutes} minutes",
-    "seconds": "{seconds} secondes",
+    "minutes": "{minutes, plural, one {# minute} other {# minutes}}",
+    "seconds": "{seconds, plural, one {# seconde} other {# secondes}}",
     "both": "{minutes}min {seconds}s"
   },
   "startButton": "Démarrer",
