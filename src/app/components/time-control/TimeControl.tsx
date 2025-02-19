@@ -7,6 +7,7 @@ import Button from "@/app/components/button/Button";
 import Play from "@/app/assets/svg/play.svg";
 import { useTranslations } from "next-intl";
 import TimerDisplay from "@/app/components/time-control/TimerDisplay";
+import StartButton from "@/app/components/time-control/StartButton";
 
 export default function TimeControl() {
     const [selectedLengthOption, setSelectedLengthOption] = useState(0)
@@ -172,10 +173,7 @@ export default function TimeControl() {
                 <>
                     <Selector options={lengthOptions} selectedIndex={selectedLengthOption} setSelectedIndex={setSelectedLengthOption}/>
                     <Selector options={subdivisionOptions} selectedIndex={selectedSubdivisionsOption} setSelectedIndex={setSelectedSubdivisionsOption}/>
-                    <Button onClick={handleStart} className={`flex items-center gap-3 justify-center`}>
-                        <Play width={25} height={25}/>
-                        {t("startButton")}
-                    </Button>
+                    <StartButton handleStart={handleStart}/>
                 </>
             )}
             {isInProgress && (
