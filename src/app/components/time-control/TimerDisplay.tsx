@@ -1,18 +1,24 @@
 import Clock from "@/app/components/clock/Clock";
 import { subdivisionOptions } from "@/app/components/time-control/SubdivisionSelector";
 import { lengthOptions } from "@/app/components/time-control/LengthSelector";
+import PauseStopButtons from "@/app/components/time-control/PauseStopButtons";
 
 type TimerDisplayProps = {
     isFinished: boolean;
     currentColor: string;
     selectedLengthOption: number;
     selectedSubdivisionsOption: number;
-    currentTime: Date;
+    startTime: Date;
     handleStart: () => void;
     setIsInProgress: (isInProgress: boolean) => void;
+    isPaused: boolean;
+    handlePause: () => void;
+    handleResume: () => void;
+    handleStop: () => void;
+    finishTime: Date;
 }
 
-export default function TimerDisplay({ isFinished, currentColor, selectedLengthOption, selectedSubdivisionsOption, currentTime, handleStart, setIsInProgress }: TimerDisplayProps) {
+export default function TimerDisplay({ finishTime, isFinished, currentColor, selectedLengthOption, selectedSubdivisionsOption, startTime, handleStart, setIsInProgress, handlePause, handleResume, handleStop, isPaused }: TimerDisplayProps) {
     const subdivisions = subdivisionOptions[selectedSubdivisionsOption]
     const lengthInMinutes = lengthOptions[selectedLengthOption]
 
@@ -24,11 +30,16 @@ export default function TimerDisplay({ isFinished, currentColor, selectedLengthO
             <Clock
                 fullRoundDuration={lengthInMinutes * 1000 * 60}
                 subdivisions={subdivisions}
-                startTime={currentTime}
+                startTime={startTime}
                 isFinished={isFinished}
                 handleRestart={handleStart}
                 setIsInProgress={setIsInProgress}
+                isPaused={isPaused}
+                finishTime={finishTime}
             />
+            {!isFinished && (
+                <PauseStopButtons isPaused={isPaused} handlePause={handlePause} handleResume={handleResume} handleStop={handleStop} />
+            )}
         </div>
     );
 }

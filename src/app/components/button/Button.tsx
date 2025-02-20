@@ -8,12 +8,12 @@ type ButtonProps = {
 
 const buttonColor = {
     primary: {
-        green: 'bg-greenButtonBackground',
-        red: 'bg-redButtonBackground',
+        green: 'bg-greenButtonBackground border-selectorBorder',
+        red: 'bg-redButtonBackground border-selectorBorder',
     },
     secondary: {
-        green: 'bg-greenButtonBackgroundSecondary',
-        red: 'bg-redButtonBackgroundSecondary',
+        green: 'border-greenButtonBackground bg-background',
+        red: 'border-redButtonBackground bg-background',
     }
 }
 
@@ -22,7 +22,7 @@ export default function Button({ onClick, children, className, buttonType = 'pri
     return (
         <button
             onClick={onClick}
-            className={`${className} ${buttonColor[buttonType][color]} rounded-lg px-6 py-4 text-sm sm:text-base text-center cursor-pointer flex-grow-0 hover:brightness-105 border-selectorBorder border-4`}
+            className={`${className} ${buttonColor[buttonType][color]} rounded-lg px-6 py-4 text-sm sm:text-base text-center cursor-pointer flex-grow-0 hover:brightness-105 border-4`}
         >
             {children}
         </button>

@@ -26,6 +26,9 @@
     "both": "{minutes}min {seconds}s"
   },
   "startButton": "Démarrer",
-  "restartButton": "Redémarrer",
-  "backButton": "Retour"
+  "restartButton": "Recommencer",
+  "backButton": "Retour",
+  "pauseButton": "Pause",
+  "resumeButton": "Redémarrer",
+  "stopButton": "Arrêter"
 }
