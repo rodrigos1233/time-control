@@ -14,24 +14,49 @@ type selectorProps = {
     isFinished: boolean;
     handleRestart: () => void;
     setIsInProgress: (isInProgress: boolean) => void;
+    isPaused: boolean;
+    finishTime: Date;
 }
 
-export default function Clock({fullRoundDuration, subdivisions, startTime, isFinished, handleRestart, setIsInProgress}: selectorProps) {
+export default function Clock({fullRoundDuration, subdivisions, startTime, isFinished, handleRestart, setIsInProgress, isPaused, finishTime}: selectorProps) {
     const [currentTime, setCurrentTime] = useState(new Date());
+    const [pausedDuration, setPausedDuration] = useState(0);
+    const [pausedAt, setPausedAt] = useState<number | null>(null);
     const t = useTranslations();
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentTime(new Date());
-        }, 1000);
+        let interval: NodeJS.Timeout | null = null;
+
+        if (isPaused) {
+            setPausedAt(new Date().getTime());
+        }
+
+        if (!isPaused) {
+            interval = setInterval(() => {
+                setCurrentTime(new Date());
+            }, 1000);
+
+            if (pausedAt) {
+                setPausedDuration(pausedDuration + new Date().getTime() - pausedAt);
+                setPausedAt(null);
+            }
+        }
 
         return () => {
-            clearInterval(interval);
+            if (interval) {
+                clearInterval(interval);
+            }
         };
-    }, []);
+    }, [isPaused]);
 
-    const timePassed = currentTime.getTime() - startTime.getTime();
-    const timeRemaining = fullRoundDuration - timePassed;
+    useEffect(() => {
+        setPausedAt(null);
+        setPausedDuration(0);
+    }, [isFinished])
+
+
+    const timePassed = currentTime.getTime() - startTime.getTime() - pausedDuration;
+    const timeRemaining = finishTime.getTime() - currentTime.getTime();
     const timePerSubdivision = fullRoundDuration / subdivisions;
     const remainingTimePerSubdivision = timePerSubdivision - (timePassed % timePerSubdivision);
 

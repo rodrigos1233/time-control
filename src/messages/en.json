@@ -31,5 +31,8 @@
   },
   "startButton": "Start",
   "restartButton": "Restart",
-  "backButton": "Back"
+  "backButton": "Back",
+  "pauseButton": "Pause",
+  "resumeButton": "Resume",
+  "stopButton": "Stop"
 }

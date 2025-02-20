@@ -1,7 +1,7 @@
 import Selector from "@/app/components/selector/Selector";
 import { useLengthText } from "@/app/hooks/useLengthText";
 
-export const lengthOptions: number[] = [45, 30, 60, 15];
+export const lengthOptions: number[] = [0.45, 30, 60, 0.15];
 
 type LengthSelectorProps = {
     selectedLengthOption: number;
