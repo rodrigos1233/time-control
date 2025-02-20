@@ -100,8 +100,7 @@ export default function Clock({fullRoundDuration, subdivisions, startTime, isFin
                             {t("backButton")}
                         </Button>
                     </div>
-                )
-                }
+                )}
                 {!isFinished && (
                     <div className="flex flex-col gap-3 justify-center items-center">
                         <DigitalClock minutes={minutes} seconds={seconds} size="big"/>
