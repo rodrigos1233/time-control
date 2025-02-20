@@ -11,6 +11,9 @@
   --selectorBackground: #00000010;
   --selectorBorder: #00000030;
   --greenButtonBackground: #9CD3A5;
+  --greenButtonBackgroundSecondary: #9CD3A577;
+  --redButtonBackground: #FC7753;
+  --redButtonBackgroundSecondary: #FC775377;
   --footerBackground: #F0D494;
 
 }
@@ -25,6 +28,9 @@
     --selectorSelectedBackground: #4F1C03;
     --selectorHoverBackground: #4F1C0350;
     --greenButtonBackground: #397F42;
+    --greenButtonBackgroundSecondary: #397F4277;
+    --redButtonBackground: #641702;
+    --redButtonBackgroundSecondary: #64170277;
     --footerBackground: #171717;
   }
 }
