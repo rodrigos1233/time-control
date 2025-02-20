@@ -120,7 +120,7 @@ export default function Clock({fullRoundDuration, subdivisions, startTime, isFin
                             <Rewind width={25} height={25}/>
                             {t("restartButton")}
                         </Button>
-                        <Button onClick={()=>setIsInProgress(false)} className={`flex items-center gap-3`}>
+                        <Button onClick={()=>setIsInProgress(false)} color={"red"} className={`flex items-center gap-3`}>
                             <Close width={25} height={25}/>
                             {t("backButton")}
                         </Button>
