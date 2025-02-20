@@ -83,6 +83,7 @@ export default function TimeControl() {
         setIsInProgress(false);
         setIsFinished(false);
         setPausedAt(null);
+        setIsPaused(false);
         setCurrentSubdivision(0);
         setSubdivisionTimes([]);
     }
@@ -94,6 +95,7 @@ export default function TimeControl() {
         }
         const now = Date.now();
         setIsInProgress(true);
+        setIsPaused(false);
         setIsFinished(false);
         setCurrentTime(new Date());
         setCurrentSubdivision(0);
