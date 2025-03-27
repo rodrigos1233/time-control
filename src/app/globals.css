@@ -3,19 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --background: #FAF1DC;
-  --secondaryBackground: #F5E2B8;
+  --background: #faf1dc;
+  --secondaryBackground: #f5e2b8;
   --foreground: #000000;
-  --selectorSelectedBackground: #FA824C;
-  --selectorHoverBackground: #FA824C50;
+  --selectorSelectedBackground: #fa824c;
+  --selectorHoverBackground: #fa824c50;
   --selectorBackground: #00000010;
   --selectorBorder: #00000030;
-  --greenButtonBackground: #9CD3A5;
-  --greenButtonBackgroundSecondary: #9CD3A577;
-  --redButtonBackground: #FC7753;
-  --redButtonBackgroundSecondary: #FC775377;
-  --footerBackground: #F0D494;
-
+  --greenButtonBackground: #9cd3a5;
+  --greenButtonBackgroundSecondary: #9cd3a577;
+  --redButtonBackground: #fc7753;
+  --redButtonBackgroundSecondary: #fc775377;
+  --footerBackground: #f0d494;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,12 +22,12 @@
     --background: #424242;
     --secondaryBackground: #222121;
     --foreground: #c3c3c3;
-    --selectorBackground: #FFFFFF10;
-    --selectorBorder: #FFFFFF30;
-    --selectorSelectedBackground: #4F1C03;
-    --selectorHoverBackground: #4F1C0350;
-    --greenButtonBackground: #397F42;
-    --greenButtonBackgroundSecondary: #397F4277;
+    --selectorBackground: #ffffff10;
+    --selectorBorder: #ffffff30;
+    --selectorSelectedBackground: #4f1c03;
+    --selectorHoverBackground: #4f1c0350;
+    --greenButtonBackground: #397f42;
+    --greenButtonBackgroundSecondary: #397f4277;
     --redButtonBackground: #641702;
     --redButtonBackgroundSecondary: #64170277;
     --footerBackground: #171717;
